@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,17 @@ public class SnakeController : MonoBehaviour
 
     [SerializeField]
     private int initialSize;
+
+    [SerializeField]
+    private GameOverController gameOverController;
+
+    [SerializeField]
+    private ParticleSystem _foodParticle;
+
+    [SerializeField]
+    private ParticleSystem _burnParticle;
+
+    public ScoreManager scoreManager;
 
     public BoxCollider2D grid;
     private Bounds bounds;
@@ -27,6 +39,10 @@ public class SnakeController : MonoBehaviour
         {
             _segments.Add(Instantiate(segmentPrefab, transform.position, Quaternion.identity));
         }
+    }
+    private void OnEnable()
+    {
+        SoundManager.Instance.Play(SoundManager.Sounds.Spawn);
     }
     private void Update()
     {
@@ -66,19 +82,19 @@ public class SnakeController : MonoBehaviour
     }
     private void SnakeMovement()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && _direction != Vector2.down)
         {
             _direction = Vector2.up;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.S) && _direction != Vector2.up)
         {
             _direction = Vector2.down;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D) && _direction != Vector2.left)
         {
             _direction = Vector2.right;
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A) && _direction != Vector2.right)
         {
             _direction = Vector2.left;
         }
@@ -92,14 +108,48 @@ public class SnakeController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<FoodController>() != null)
+        FoodController _foodController = collision.gameObject.GetComponent<FoodController>();
+
+        if(_foodController != null && _foodController.GetFoodType() == FoodType.MassGainer)
         {
+            _foodParticle.transform.position = transform.position;
+            _foodParticle.Play();
+
+            SoundManager.Instance.Play(SoundManager.Sounds.Pickup);
+            scoreManager.AddScore(10);
             Grow();
+        }
+        else if(_foodController != null && _foodController.GetFoodType() == FoodType.MassBurner)
+        {
+            _burnParticle.transform.position = transform.position;
+            _burnParticle.Play();
+
+            SoundManager.Instance.Play(SoundManager.Sounds.BadPickup);
+            scoreManager.RemoveScore(5);
+            Burn();
         }
         else if(collision.gameObject.CompareTag("Obstacle"))
         {
             //GameOver
-            SceneManager.LoadScene(0);
+            GameOver();
+        }
+    }
+    private void GameOver()
+    {
+        SoundManager.Instance.Play(SoundManager.Sounds.Death);
+        this.enabled = false;
+        gameOverController.ShowGameOverPanel();
+    }
+    private void Burn()
+    {
+        if(_segments.Count == 1)
+        {
+            GameOver();
+        }
+        else
+        {
+            Destroy(_segments[_segments.Count - 1].gameObject);
+            _segments.Remove(_segments[_segments.Count - 1]);
         }
     }
 }
