@@ -738,6 +738,9 @@ MonoBehaviour:
   - soundType: 7
     soundClip: {fileID: 8300000, guid: 26e19616f6ba9f6469e9d3d6c38b23fe, type: 3}
     volume: 0.3
+  - soundType: 8
+    soundClip: {fileID: 8300000, guid: c134bf6bd85561b4b938c913b97b57c9, type: 3}
+    volume: 0.3
 --- !u!81 &446273187
 AudioListener:
   m_ObjectHideFlags: 0

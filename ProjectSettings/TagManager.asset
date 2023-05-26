@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - GridArea
+  - FxTemporaire
+  - PowerParticle
   layers:
   - Default
   - TransparentFX
