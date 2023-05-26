@@ -24,7 +24,7 @@ public class GameOverController : MonoBehaviour
 
     private void RestartLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ShowGameOverPanel()

@@ -13,6 +13,7 @@ public class LobbyController : MonoBehaviour
     private void Awake()
     {
         player1Button.onClick.AddListener(PlaySinglePlayer);
+        player2Button.onClick.AddListener(PlayDoublePlayer);
         SoundManager.Instance.PlayBG(SoundManager.Sounds.LobbyMusic);
     }
 
@@ -21,6 +22,10 @@ public class LobbyController : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    private void PlayDoublePlayer()
+    {
+        SceneManager.LoadScene(2);
+    }
     public void PlayHoverSound()
     {
         SoundManager.Instance.Play(SoundManager.Sounds.ButtonHover);

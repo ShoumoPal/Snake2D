@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.PlayerLoop.PreLateUpdate;
 
 public class SnakeController : MonoBehaviour
 {
+    [SerializeField]
+    public Player player;
+
     [SerializeField]
     private float powerUpDuration;
 
@@ -30,6 +34,9 @@ public class SnakeController : MonoBehaviour
 
     [SerializeField]
     private GameOverController gameOverController;
+
+    [SerializeField]
+    private PlayerWinScreenController playerWinScreenController;
 
     [SerializeField]
     private ParticleSystem _foodParticle;
@@ -123,28 +130,58 @@ public class SnakeController : MonoBehaviour
     }
     private void SnakeMovement()
     {
-        // Only allow turning up or down while moving in the x-axis
-        if (_direction.x != 0f)
+        if(player == Player.Player1)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            // Only allow turning up or down while moving in the x-axis
+            if (_direction.x != 0f)
             {
-                _direction = Vector2.up;
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    _direction = Vector2.up;
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    _direction = Vector2.down;
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            // Only allow turning left or right while moving in the y-axis
+            else if (_direction.y != 0f)
             {
-                _direction = Vector2.down;
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    _direction = Vector2.right;
+                }
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    _direction = Vector2.left;
+                }
             }
         }
-        // Only allow turning left or right while moving in the y-axis
-        else if (_direction.y != 0f)
+        else if(player == Player.Player2)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            // Only allow turning up or down while moving in the x-axis
+            if (_direction.x != 0f)
             {
-                _direction = Vector2.right;
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    _direction = Vector2.up;
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    _direction = Vector2.down;
+                }
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            // Only allow turning left or right while moving in the y-axis
+            else if (_direction.y != 0f)
             {
-                _direction = Vector2.left;
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    _direction = Vector2.right;
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    _direction = Vector2.left;
+                }
             }
         }
     }
@@ -210,6 +247,10 @@ public class SnakeController : MonoBehaviour
                 StartCoroutine(nameof(PowerUpDuration));
             }
         }
+        //else if(player == Player.Player1 && collision.gameObject.name == "SnakeSegment 1")
+        //{
+        //    PlayerWin(player);
+        //}
         else if(collision.gameObject.CompareTag("Obstacle") && hasShield == false)
         {
             //GameOver
@@ -230,6 +271,10 @@ public class SnakeController : MonoBehaviour
         this.enabled = false;
         gameOverController.ShowGameOverPanel();
     }
+    private void PlayerWin(Player player)
+    {
+        playerWinScreenController.ShowPlayerWinScreen(player);
+    }
     private void Burn(int _burnAmount)
     {
         for(int i = 0; i < _burnAmount; i++)
@@ -245,4 +290,10 @@ public class SnakeController : MonoBehaviour
             }
         }   
     }
+}
+
+public enum Player
+{
+    Player1,
+    Player2
 }

@@ -7,9 +7,18 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI scoreText;
     [SerializeField]
     private SnakeController snakeController;
+    [SerializeField]
+    PauseMenuController pauseMenuController;
 
     private int score = 0;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenuController.ShowPauseMenu();
+        }
+    }
     public void AddScore(int _score)
     {
         if (snakeController.hasScoreBuff)
@@ -20,11 +29,17 @@ public class ScoreManager : MonoBehaviour
         {
             score += _score;
         }
-        scoreText.text = "Score: " + score;
+        if(snakeController.player == Player.Player1)
+            scoreText.text = "Player 1\n\nScore: " + score;
+        else
+            scoreText.text = "Player 2\n\nScore: " + score;
     }
     public void RemoveScore(int _score)
     {
         score -= _score;
-        scoreText.text = "Score: " + score;
+        if (snakeController.player == Player.Player1)
+            scoreText.text = "Player 1\n\nScore: " + score;
+        else
+            scoreText.text = "Player 2\n\nScore: " + score;
     }
 }
