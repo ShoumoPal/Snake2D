@@ -64,6 +64,7 @@ public class SoundManager : MonoBehaviour
         Pickup,
         Death,
         Spawn,
-        BadPickup
+        BadPickup,
+        PowerUpPickup
     }
 }
