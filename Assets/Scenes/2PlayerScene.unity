@@ -858,7 +858,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6666e91442b19104389865a909ee4643, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   growAmount: 1
   burnAmount: 2
   gameOverController: {fileID: 880176541}
-  playerWinScreenController: {fileID: 0}
+  playerWinScreenController: {fileID: 1839474745}
   _foodParticle: {fileID: 2076585200}
   _burnParticle: {fileID: 1534800072}
   _textController: {fileID: 23348585}
@@ -1927,7 +1927,7 @@ MonoBehaviour:
   growAmount: 1
   burnAmount: 2
   gameOverController: {fileID: 880176541}
-  playerWinScreenController: {fileID: 0}
+  playerWinScreenController: {fileID: 1839474745}
   _foodParticle: {fileID: 2076585200}
   _burnParticle: {fileID: 1534800072}
   _textController: {fileID: 23348585}

@@ -251,10 +251,21 @@ public class SnakeController : MonoBehaviour
         //{
         //    PlayerWin(player);
         //}
-        else if(collision.gameObject.CompareTag("Obstacle") && hasShield == false)
+        else if(collision.gameObject.CompareTag("Obstacle") && hasShield == false && SceneManager.GetActiveScene().buildIndex == 1)
         {
             //GameOver
             GameOver();
+        }
+        else if(collision.gameObject.CompareTag("Obstacle") && hasShield == false && SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            if(player == Player.Player1)
+            {
+                PlayerWin(Player.Player2);
+            }
+            else
+            {
+                PlayerWin(Player.Player1);
+            }
         }
     }
     IEnumerator PowerUpDuration()
@@ -279,9 +290,16 @@ public class SnakeController : MonoBehaviour
     {
         for(int i = 0; i < _burnAmount; i++)
         {
-            if (_segments.Count == 1)
+            if (_segments.Count == 1 && SceneManager.GetActiveScene().buildIndex == 1)
             {
                 GameOver();
+            }
+            else if(_segments.Count == 1 && SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                if(player == Player.Player1)
+                    PlayerWin(Player.Player2);
+                else
+                    PlayerWin(Player.Player1);
             }
             else
             {
