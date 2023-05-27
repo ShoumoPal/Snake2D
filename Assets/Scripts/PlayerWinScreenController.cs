@@ -14,6 +14,7 @@ public class PlayerWinScreenController : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 0f;
         playAgainButton.onClick.AddListener(PlayAgain);
         mainMenuButton.onClick.AddListener(MainMenu);
     }
@@ -36,11 +37,13 @@ public class PlayerWinScreenController : MonoBehaviour
     }
     private void MainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
     private void PlayAgain()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
