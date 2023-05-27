@@ -6,18 +6,18 @@ We all remember the Snake game we used to play on our Nokia mobile phones right?
 
 * An interactive Lobby UI
 
-<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/20d7ca58-c4a1-4152-9109-c79b93aca6cd" width=50% height=50%>
+<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/7a6fb133-e08f-4e10-9cd4-389a852ba02f" width=50% height=50%>
 
 * 3 kinds of Power-Ups!(2x Score, 2x Speed and Shield)
 
-<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/fc14e2a2-6808-4884-a71a-ac24fc8f8a74" width=20% height=20%>
-<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/29ed34e5-80be-46c4-b58c-accbdf4e77b1" width=20% height=20%>
-<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/086e9080-54b6-4fc4-bee1-e3e946e4b24a" width=20% height=20%>
+<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/af7db5d4-8f6b-4aba-8ef9-6047f62b4f4d" width=20% height=20%>
+<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/ee1670cb-2151-470d-8c71-5075f4ba8608" width=20% height=20%>
+<img src="https://github.com/ShoumoPal/Snake2D/assets/46050414/f8d95ca6-c4a4-44bf-aadc-5a16b636e7d5" width=20% height=20%>
 
 * A 2-Player feature so you can play with your friends!
 
-![2 Player](https://github.com/ShoumoPal/Snake2D/assets/46050414/f04344fd-3ece-48ff-8f80-39a8f0fff405)
+![2 Player](https://github.com/ShoumoPal/Snake2D/assets/46050414/6ecbfe68-ba4e-4d75-bccb-c8577da37b3d)
 
 * An interactive pop-up message which displays each time a buff is acquired or the duration finishes.
 
-![Untitled video - Made with Clipchamp (1)](https://github.com/ShoumoPal/Snake2D/assets/46050414/efdccd4e-e581-4ec3-9c56-5adc49907124)
+![Untitled video - Made with Clipchamp (1)](https://github.com/ShoumoPal/Snake2D/assets/46050414/c44f46e9-cdfd-43aa-aeff-9d9aa9382052)
